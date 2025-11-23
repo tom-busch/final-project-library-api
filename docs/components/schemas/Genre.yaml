@@ -1,0 +1,9 @@
+type: object
+properties:
+  id:
+    readOnly: true
+    type: integer
+    example: 1
+  name:
+    type: string
+    example: Fiction

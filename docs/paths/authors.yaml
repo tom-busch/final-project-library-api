@@ -1,0 +1,32 @@
+get:
+  summary: List all authors
+  tags:
+    - authors
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemes/Author.yaml
+post:
+  summary: Create a new author
+  tags:
+    - authors
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemes/Author.yaml
+  responses:
+    '201':
+      description: Author created successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemes/Author.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml

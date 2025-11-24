@@ -21,3 +21,17 @@ paths:
     $ref: paths/users.yaml
   /users/{id}:
     $ref: paths/userId.yaml
+  /users/{id}/role:
+    $ref: paths/userIdRole.yaml
+  /books:
+    $ref: paths/books.yaml
+  /books/{id}:
+    $ref: paths/bookId.yaml
+  /authors:
+    $ref: paths/authors.yaml
+  /authors{id}:
+    $ref: paths/authorId.yaml
+  /genres:
+    $ref: paths/genres.yaml
+  /genres/{id}:
+    $ref: paths/genreId.yaml

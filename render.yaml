@@ -3,11 +3,13 @@ services:
     name: shelfserve-api
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build && cp -r src/* . 2>/dev/null || true
-    startCommand: node index.js
+    buildCommand: npm install && npm run build
+    startCommand: node -e "console.log('CWD:', process.cwd()); const fs=require('fs'); console.log('Files:', fs.readdirSync('.').slice(0,10));" && node index.js
     envVars:
       - key: NODE_ENV
         value: production
+      - key: RENDER
+        value: "true"
       - key: DATABASE_URL
         fromDatabase:
           name: postgres

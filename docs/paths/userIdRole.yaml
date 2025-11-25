@@ -1,0 +1,32 @@
+patch:
+  summary: Update a users' role by their id
+  tags:
+    - users
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: A user's id
+      schema:
+        type: integer
+        example: 1
+    - name: role
+      in: path
+      required: true
+      description: Change the user's role
+      schema:
+        type: string
+        example: ADMIN
+  responses:
+    '201':
+      description: Content changed
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/User.yaml
+    '400':
+      $ref: '../components/responses/BadRequest.yaml'
+    '404':
+      $ref: '../components/responses/NotFound.yaml'

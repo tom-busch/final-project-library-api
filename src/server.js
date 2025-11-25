@@ -31,6 +31,10 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
+app.get('/', (req, res) => {
+  res.send('ShelfServe API is running 🚀');
+});
+
 // 404 handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');

@@ -3,13 +3,11 @@ services:
     name: shelfserve-api
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build
+    buildCommand: npm install && npm run build && mkdir -p src && cp package.json src/ && cd src && npm install --production
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-      - key: NODE_PATH
-        value: /opt/render/project/node_modules
       - key: DATABASE_URL
         fromDatabase:
           name: postgres

@@ -4,7 +4,7 @@ services:
     env: node
     plan: free
     buildCommand: npm install && npx prisma generate
-    startCommand: node src/server.js
+    startCommand: cd src && node server.js
     envVars:
       - key: NODE_ENV
         value: production

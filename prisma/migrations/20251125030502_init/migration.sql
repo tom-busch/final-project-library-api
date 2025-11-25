@@ -1,13 +1,13 @@
 -- CreateEnum
-CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
+CREATE TYPE "public"."Role" AS ENUM ('USER', 'ADMIN');
 
 -- CreateTable
-CREATE TABLE "users" (
+CREATE TABLE "public"."users" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "passwordHash" TEXT NOT NULL,
-    "role" "Role" NOT NULL DEFAULT 'USER',
+    "role" "public"."Role" NOT NULL DEFAULT 'USER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -15,7 +15,7 @@ CREATE TABLE "users" (
 );
 
 -- CreateTable
-CREATE TABLE "authors" (
+CREATE TABLE "public"."authors" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "bio" TEXT,
@@ -26,7 +26,7 @@ CREATE TABLE "authors" (
 );
 
 -- CreateTable
-CREATE TABLE "genres" (
+CREATE TABLE "public"."genres" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -36,7 +36,7 @@ CREATE TABLE "genres" (
 );
 
 -- CreateTable
-CREATE TABLE "books" (
+CREATE TABLE "public"."books" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT,
@@ -51,7 +51,7 @@ CREATE TABLE "books" (
 );
 
 -- CreateTable
-CREATE TABLE "loans" (
+CREATE TABLE "public"."loans" (
     "id" SERIAL NOT NULL,
     "userId" INTEGER NOT NULL,
     "bookId" INTEGER NOT NULL,
@@ -66,34 +66,34 @@ CREATE TABLE "loans" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+CREATE UNIQUE INDEX "users_email_key" ON "public"."users"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "genres_name_key" ON "genres"("name");
+CREATE UNIQUE INDEX "genres_name_key" ON "public"."genres"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "books_isbn_key" ON "books"("isbn");
+CREATE UNIQUE INDEX "books_isbn_key" ON "public"."books"("isbn");
 
 -- CreateIndex
-CREATE INDEX "books_authorId_idx" ON "books"("authorId");
+CREATE INDEX "books_authorId_idx" ON "public"."books"("authorId");
 
 -- CreateIndex
-CREATE INDEX "books_genreId_idx" ON "books"("genreId");
+CREATE INDEX "books_genreId_idx" ON "public"."books"("genreId");
 
 -- CreateIndex
-CREATE INDEX "loans_userId_idx" ON "loans"("userId");
+CREATE INDEX "loans_userId_idx" ON "public"."loans"("userId");
 
 -- CreateIndex
-CREATE INDEX "loans_bookId_idx" ON "loans"("bookId");
+CREATE INDEX "loans_bookId_idx" ON "public"."loans"("bookId");
 
 -- AddForeignKey
-ALTER TABLE "books" ADD CONSTRAINT "books_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "authors"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."books" ADD CONSTRAINT "books_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "public"."authors"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "books" ADD CONSTRAINT "books_genreId_fkey" FOREIGN KEY ("genreId") REFERENCES "genres"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."books" ADD CONSTRAINT "books_genreId_fkey" FOREIGN KEY ("genreId") REFERENCES "public"."genres"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "loans" ADD CONSTRAINT "loans_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."loans" ADD CONSTRAINT "loans_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "loans" ADD CONSTRAINT "loans_bookId_fkey" FOREIGN KEY ("bookId") REFERENCES "books"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."loans" ADD CONSTRAINT "loans_bookId_fkey" FOREIGN KEY ("bookId") REFERENCES "public"."books"("id") ON DELETE CASCADE ON UPDATE CASCADE;

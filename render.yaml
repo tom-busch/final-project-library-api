@@ -3,13 +3,11 @@ services:
     name: shelfserve-api
     runtime: node
     plan: free
-    buildCommand: cd src && npm install && npx prisma generate --schema=../prisma/schema.prisma
-    startCommand: node src/server.js
+    buildCommand: npm install && npm run build
+    startCommand: node index.js
     envVars:
       - key: NODE_ENV
         value: production
-      - key: NODE_PATH
-        value: /opt/render/project/node_modules
       - key: DATABASE_URL
         fromDatabase:
           name: postgres
@@ -22,3 +20,4 @@ services:
 databases:
   - name: postgres
     plan: free
+

@@ -12,7 +12,7 @@
     "migrate:dev": "npx prisma migrate dev",
     "migrate:deploy": "npx prisma migrate deploy",
     "seed": "node ../prisma/seed.js",
-    "build": "npx prisma generate --schema=../prisma/schema.prisma",
+    "build": "npx prisma generate --schema=../prisma/schema.prisma"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",

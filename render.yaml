@@ -4,7 +4,7 @@ services:
     runtime: node
     plan: free
     buildCommand: npm install && npm run build
-    startCommand: node -e "console.log('CWD:', process.cwd()); const fs=require('fs'); console.log('Files:', fs.readdirSync('.').slice(0,10));" && node index.js
+    startCommand: cd /opt/render/project && node index.js
     envVars:
       - key: NODE_ENV
         value: production

@@ -3,3 +3,5 @@ node_modules
 .DS_STORE
 /src/generated/prisma
 package-lock.json
+src/generated/prisma/*.ts
+src/generated/prisma/**/*.ts

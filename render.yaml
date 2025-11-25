@@ -3,7 +3,7 @@ services:
     name: shelfserve-api
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build && ln -s ../node_modules src/node_modules 2>/dev/null || true
+    buildCommand: cd src && npm install && npm run build
     startCommand: node src/server.js
     envVars:
       - key: NODE_ENV

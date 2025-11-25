@@ -3,19 +3,11 @@ info:
   title: ShelfServe API
   version: 1.0.0
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:3000
     description: Local development server
-  - url: https://final-project-library-api-ojkn.onrender.com
-    description: Production server on Render
 tags:
   - name: users
     description: User-related endpoints
-  - name: books
-    description: Book-related endpoints
-  - name: authors
-    description: Author-related endpoints
-  - name: genres
-    description: Genre-related endpoints
 paths:
   /users:
     $ref: paths/users.yaml

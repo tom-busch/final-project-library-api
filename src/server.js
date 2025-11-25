@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import SwaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
 
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -14,6 +16,9 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.json());
+
+const specs = YAML.load('./public/bundled.yaml');
+app.use('/shelfserve-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
 // Routes
 app.use('/auth', authRoutes);

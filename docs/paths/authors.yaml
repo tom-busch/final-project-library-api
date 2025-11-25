@@ -10,7 +10,7 @@ get:
           schema:
             type: array
             items:
-              $ref: ../components/schemes/Author.yaml
+              $ref: ../components/schemas/Author.yaml
 post:
   summary: Create a new author
   tags:
@@ -20,13 +20,13 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemes/Author.yaml
+          $ref: ../components/schemas/Author.yaml
   responses:
     '201':
       description: Author created successfully
       content:
         application/json:
           schema:
-            $ref: ../components/schemes/Author.yaml
+            $ref: ../components/schemas/Author.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml

@@ -2,11 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
-import authRoutes from './routes/authRoutes.js';
-import userRoutes from './routes/userRoutes.js';
-import bookRoutes from './routes/bookRoutes.js';
-import authorRoutes from './routes/authorRoutes.js';
-import genreRoutes from './routes/genreRoutes.js';
+import authRoutes from './src/routes/authRoutes.js';
+import userRoutes from './src/routes/userRoutes.js';
+import bookRoutes from './src/routes/bookRoutes.js';
+import authorRoutes from './src/routes/authorRoutes.js';
+import genreRoutes from './src/routes/genreRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;

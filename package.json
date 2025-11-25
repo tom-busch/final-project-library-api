@@ -26,7 +26,7 @@
   },
   "scripts": {
     "build": "npx prisma generate",
-    "start": "NODE_OPTIONS='--experimental-modules' node src/server.js",
+    "start": "node server.js",
     "dev": "node --env-file=.env --watch src/server.js"
   }
 }

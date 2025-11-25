@@ -27,6 +27,10 @@ app.use('/books', bookRoutes);
 app.use('/authors', authorRoutes);
 app.use('/genres', genreRoutes);
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 // 404 handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');

@@ -1,13 +1,13 @@
-import { Router } from 'express';
-import {
+const { Router } = require('express');
+const {
   getBooks,
   postBook,
   putBook,
   deleteBook,
-} from '../controllers/bookController.js';
+} = require('../controllers/bookController.js');
 
-import { authenticate } from '../middleware/authenticate.js';
-import { authorizeRoles } from '../middleware/authorizeRoles.js';
+const { authenticate } = require('../middleware/authenticate.js');
+const { authorizeRoles } = require('../middleware/authorizeRoles.js');
 
 const router = Router();
 
@@ -23,4 +23,4 @@ router.put('/:id', authenticate, authorizeRoles('ADMIN'), putBook);
 // DELETE /books/:id
 router.delete('/:id', authenticate, authorizeRoles('ADMIN'), deleteBook);
 
-export default router;
+module.exports = router;

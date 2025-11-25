@@ -1,18 +1,18 @@
-import {
+const {
   findAllGenres,
   findGenreById,
   createGenreRecord,
   updateGenreRecord,
   deleteGenreById,
-} from '../repositories/genreRepo.js';
+} = require('../repositories/genreRepo.js');
 
 // GET /genres
-export async function listGenres() {
+async function listGenres() {
   return findAllGenres();
 }
 
 // POST /genres
-export async function createGenreService(body) {
+async function createGenreService(body) {
   const { name } = body;
   if (!name) {
     const err = new Error('Field "name" is required');
@@ -24,7 +24,7 @@ export async function createGenreService(body) {
 }
 
 // PUT /genres/:id
-export async function updateGenreService(idParam, body) {
+async function updateGenreService(idParam, body) {
   const id = Number(idParam);
   if (Number.isNaN(id)) {
     const err = new Error('Invalid genre ID');
@@ -50,7 +50,7 @@ export async function updateGenreService(idParam, body) {
 }
 
 // DELETE /genres/:id
-export async function removeGenreService(idParam) {
+async function removeGenreService(idParam) {
   const id = Number(idParam);
   if (Number.isNaN(id)) {
     const err = new Error('Invalid genre ID');
@@ -67,3 +67,10 @@ export async function removeGenreService(idParam) {
 
   await deleteGenreById(id);
 }
+
+module.exports = {
+  listGenres,
+  createGenreService,
+  updateGenreService,
+  removeGenreService
+};

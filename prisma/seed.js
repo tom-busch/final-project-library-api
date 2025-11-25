@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt';
-import 'dotenv/config';
-import prisma from '../config/db.js';
+const bcrypt = require('bcrypt');
+require('dotenv/config');
+const prisma = require('../config/db.js');
 
 async function main() {
   console.log('Starting database');

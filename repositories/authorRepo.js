@@ -1,14 +1,14 @@
-import prisma from '../config/db.js';
+const prisma = require('../config/db.js');
 
 // GET /authors
-export async function findAllAuthors() {
+async function findAllAuthors() {
   return prisma.author.findMany({
     select: { id: true, name: true },
   });
 }
 
 // Helper
-export async function findAuthorById(id) {
+async function findAuthorById(id) {
   return prisma.author.findUnique({
     where: { id },
     select: { id: true, name: true },
@@ -16,7 +16,7 @@ export async function findAuthorById(id) {
 }
 
 // POST /authors
-export async function createAuthorRecord(name) {
+async function createAuthorRecord(name) {
   return prisma.author.create({
     data: { name },
     select: { id: true, name: true },
@@ -24,7 +24,7 @@ export async function createAuthorRecord(name) {
 }
 
 // PUT /authors/:id
-export async function updateAuthorRecord(id, name) {
+async function updateAuthorRecord(id, name) {
   return prisma.author.update({
     where: { id },
     data: { name },
@@ -33,6 +33,14 @@ export async function updateAuthorRecord(id, name) {
 }
 
 // DELETE /authors/:id
-export async function deleteAuthorById(id) {
+async function deleteAuthorById(id) {
   await prisma.author.delete({ where: { id } });
 }
+
+module.exports = {
+  findAllAuthors,
+  findAuthorById,
+  createAuthorRecord,
+  updateAuthorRecord,
+  deleteAuthorById
+};

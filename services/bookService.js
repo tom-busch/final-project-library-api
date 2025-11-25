@@ -1,13 +1,13 @@
-import {
+const {
   findAllBooks,
   findBookById,
   createBookRecord,
   updateBookRecord,
   deleteBookById,
-} from '../repositories/bookRepo.js';
+} = require('../repositories/bookRepo.js');
 
 // GET /books
-export async function listBooks() {
+async function listBooks() {
   const books = await findAllBooks();
   return books.map((b) => ({
     id: b.id,
@@ -18,7 +18,7 @@ export async function listBooks() {
 }
 
 // POST /books
-export async function createBookService(body) {
+async function createBookService(body) {
   const { name, authorId, genreId } = body;
 
   if (!name || authorId == null || genreId == null) {
@@ -42,7 +42,7 @@ export async function createBookService(body) {
 }
 
 // PUT /books/:id
-export async function updateBookService(idParam, body) {
+async function updateBookService(idParam, body) {
   const id = Number(idParam);
   if (Number.isNaN(id)) {
     const err = new Error('Invalid book ID');
@@ -79,7 +79,7 @@ export async function updateBookService(idParam, body) {
 }
 
 // DELETE /books/:id
-export async function removeBookService(idParam) {
+async function removeBookService(idParam) {
   const id = Number(idParam);
   if (Number.isNaN(id)) {
     const err = new Error('Invalid book ID');
@@ -96,3 +96,10 @@ export async function removeBookService(idParam) {
 
   await deleteBookById(id);
 }
+
+module.exports = {
+  listBooks,
+  createBookService,
+  updateBookService,
+  removeBookService
+};

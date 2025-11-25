@@ -1,4 +1,4 @@
-export function authorizeRoles(...allowedRoles) {
+function authorizeRoles(...allowedRoles) {
     return (req, res, next) => {
         if (!allowedRoles.includes(req.user.role)) {
             const err = new Error('You do not have permission to perform this action');
@@ -8,3 +8,7 @@ export function authorizeRoles(...allowedRoles) {
         return next();
     }
 }
+
+module.exports = {
+    authorizeRoles
+};

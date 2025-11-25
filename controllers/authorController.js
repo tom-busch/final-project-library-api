@@ -1,12 +1,12 @@
-import {
+const {
   listAuthors,
   createAuthorService,
   updateAuthorService,
   removeAuthorService,
-} from '../services/authorService.js';
+} = require('../services/authorService.js');
 
 // GET /authors
-export async function getAuthors(req, res, next) {
+async function getAuthors(req, res, next) {
   try {
     const authors = await listAuthors();
     res.json(authors);
@@ -16,7 +16,7 @@ export async function getAuthors(req, res, next) {
 }
 
 // POST /authors
-export async function postAuthor(req, res, next) {
+async function postAuthor(req, res, next) {
   try {
     const author = await createAuthorService(req.body);
     res.status(201).json(author);
@@ -26,7 +26,7 @@ export async function postAuthor(req, res, next) {
 }
 
 // PUT /authors/:id
-export async function putAuthor(req, res, next) {
+async function putAuthor(req, res, next) {
   try {
     const updated = await updateAuthorService(req.params.id, req.body);
     res.json(updated);
@@ -36,7 +36,7 @@ export async function putAuthor(req, res, next) {
 }
 
 // DELETE /authors/:id
-export async function deleteAuthor(req, res, next) {
+async function deleteAuthor(req, res, next) {
   try {
     await removeAuthorService(req.params.id);
     res.status(204).send();
@@ -44,3 +44,10 @@ export async function deleteAuthor(req, res, next) {
     next(err);
   }
 }
+
+module.exports = {
+  getAuthors,
+  postAuthor,
+  putAuthor,
+  deleteAuthor
+};

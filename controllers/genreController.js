@@ -1,12 +1,12 @@
-import {
+const {
   listGenres,
   createGenreService,
   updateGenreService,
   removeGenreService,
-} from '../services/genreService.js';
+} = require('../services/genreService.js');
 
 // GET /genres
-export async function getGenres(req, res, next) {
+async function getGenres(req, res, next) {
   try {
     const genres = await listGenres();
     res.json(genres);
@@ -16,7 +16,7 @@ export async function getGenres(req, res, next) {
 }
 
 // POST /genres
-export async function postGenre(req, res, next) {
+async function postGenre(req, res, next) {
   try {
     const genre = await createGenreService(req.body);
     res.status(201).json(genre);
@@ -26,7 +26,7 @@ export async function postGenre(req, res, next) {
 }
 
 // PUT /genres/:id
-export async function putGenre(req, res, next) {
+async function putGenre(req, res, next) {
   try {
     const updated = await updateGenreService(req.params.id, req.body);
     res.json(updated);
@@ -36,7 +36,7 @@ export async function putGenre(req, res, next) {
 }
 
 // DELETE /genres/:id
-export async function deleteGenre(req, res, next) {
+async function deleteGenre(req, res, next) {
   try {
     await removeGenreService(req.params.id);
     res.status(204).send();
@@ -44,3 +44,10 @@ export async function deleteGenre(req, res, next) {
     next(err);
   }
 }
+
+module.exports = {
+  getGenres,
+  postGenre,
+  putGenre,
+  deleteGenre
+};

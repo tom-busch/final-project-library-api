@@ -1,4 +1,4 @@
-import {
+const {
   findAllUsers,
   findUserById,
   createUserFromName,
@@ -6,13 +6,13 @@ import {
   getActiveLoansForUser,
   updateUserRoleById,
   deleteUserById,
-} from '../repositories/userRepo.js';
+} = require('../repositories/userRepo.js');
 
-export async function listUsers() {
+async function listUsers() {
   return findAllUsers();
 }
 
-export async function createUserService(name) {
+async function createUserService(name) {
   if (!name) {
     const err = new Error('Field "name" is required');
     err.status = 400;
@@ -21,7 +21,7 @@ export async function createUserService(name) {
   return createUserFromName(name);
 }
 
-export async function setUserBooksCheckedOut(userId, booksCheckedOut) {
+async function setUserBooksCheckedOut(userId, booksCheckedOut) {
   if (!Array.isArray(booksCheckedOut)) {
     const err = new Error('"booksCheckedOut" must be an array of book IDs');
     err.status = 400;
@@ -57,7 +57,7 @@ export async function setUserBooksCheckedOut(userId, booksCheckedOut) {
   };
 }
 
-export async function changeUserRoleService(userId, role) {
+async function changeUserRoleService(userId, role) {
   const id = Number(userId);
   if (Number.isNaN(id)) {
     const err = new Error('Invalid user ID');
@@ -89,7 +89,7 @@ export async function changeUserRoleService(userId, role) {
   };
 }
 
-export async function removeUserService(userId) {
+async function removeUserService(userId) {
   const id = Number(userId);
   if (Number.isNaN(id)) {
     const err = new Error('Invalid user ID');
@@ -106,3 +106,11 @@ export async function removeUserService(userId) {
 
   await deleteUserById(id);
 }
+
+module.exports = {
+  listUsers,
+  createUserService,
+  setUserBooksCheckedOut,
+  changeUserRoleService,
+  removeUserService
+};

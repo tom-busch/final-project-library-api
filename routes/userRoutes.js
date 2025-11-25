@@ -1,13 +1,13 @@
-import { Router } from 'express';
-import {
+const { Router } = require('express');
+const {
   getUsers,
   postUser,
   putUser,
   patchUserRole,
   deleteUser,
-} from '../controllers/userController.js';
-import { authenticate } from '../middleware/authenticate.js';
-import { authorizeRoles } from '../middleware/authorizeRoles.js';
+} = require('../controllers/userController.js');
+const { authenticate } = require('../middleware/authenticate.js');
+const { authorizeRoles } = require('../middleware/authorizeRoles.js');
 
 const router = Router();
 
@@ -17,4 +17,4 @@ router.put('/:id', authenticate, authorizeRoles('ADMIN'), putUser);
 router.patch('/:id/role', authenticate, authorizeRoles('ADMIN'), patchUserRole);
 router.delete('/:id', authenticate, authorizeRoles('ADMIN'), deleteUser);
 
-export default router;
+module.exports = router;

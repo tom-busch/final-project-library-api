@@ -1,12 +1,12 @@
-import {
+const {
   listUsers,
   createUserService,
   setUserBooksCheckedOut,
   changeUserRoleService,
   removeUserService,
-} from '../services/userService.js';
+} = require('../services/userService.js');
 
-export async function getUsers(req, res, next) {
+async function getUsers(req, res, next) {
   try {
     const users = await listUsers();
     res.json(users);
@@ -15,7 +15,7 @@ export async function getUsers(req, res, next) {
   }
 }
 
-export async function postUser(req, res, next) {
+async function postUser(req, res, next) {
   try {
     const { name } = req.body;
     const user = await createUserService(name);
@@ -25,7 +25,7 @@ export async function postUser(req, res, next) {
   }
 }
 
-export async function putUser(req, res, next) {
+async function putUser(req, res, next) {
   try {
     const { id } = req.params;
     const { booksCheckedOut } = req.body;
@@ -36,7 +36,7 @@ export async function putUser(req, res, next) {
   }
 }
 
-export async function patchUserRole(req, res, next) {
+async function patchUserRole(req, res, next) {
   try {
     const { id } = req.params;
     const { role } = req.body;
@@ -47,7 +47,7 @@ export async function patchUserRole(req, res, next) {
   }
 }
 
-export async function deleteUser(req, res, next) {
+async function deleteUser(req, res, next) {
   try {
     const { id } = req.params;
     await removeUserService(id);
@@ -56,3 +56,11 @@ export async function deleteUser(req, res, next) {
     next(err);
   }
 }
+
+module.exports = {
+  getUsers,
+  postUser,
+  putUser,
+  patchUserRole,
+  deleteUser
+};

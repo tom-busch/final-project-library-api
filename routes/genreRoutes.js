@@ -1,13 +1,13 @@
-import { Router } from 'express';
-import {
+const { Router } = require('express');
+const {
   getGenres,
   postGenre,
   putGenre,
   deleteGenre,
-} from '../controllers/genreController.js';
+} = require('../controllers/genreController.js');
 
-import { authenticate } from '../middleware/authenticate.js';
-import { authorizeRoles } from '../middleware/authorizeRoles.js';
+const { authenticate } = require('../middleware/authenticate.js');
+const { authorizeRoles } = require('../middleware/authorizeRoles.js');
 
 const router = Router();
 
@@ -23,4 +23,4 @@ router.put('/:id', authenticate, authorizeRoles('ADMIN'), putGenre);
 // DELETE /genres/:id
 router.delete('/:id', authenticate, authorizeRoles('ADMIN'), deleteGenre);
 
-export default router;
+module.exports = router;

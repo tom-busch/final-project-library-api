@@ -1,14 +1,14 @@
-import express from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
-import SwaggerUi from 'swagger-ui-express';
-import YAML from 'yamljs';
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const SwaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
 
-import authRoutes from './routes/authRoutes.js';
-import userRoutes from './routes/userRoutes.js';
-import bookRoutes from './routes/bookRoutes.js';
-import authorRoutes from './routes/authorRoutes.js';
-import genreRoutes from './routes/genreRoutes.js';
+const authRoutes = require('./routes/authRoutes.js');
+const userRoutes = require('./routes/userRoutes.js');
+const bookRoutes = require('./routes/bookRoutes.js');
+const authorRoutes = require('./routes/authorRoutes.js');
+const genreRoutes = require('./routes/genreRoutes.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -47,3 +47,5 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = app;

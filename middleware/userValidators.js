@@ -1,7 +1,7 @@
-import handleValidationErrors from './handleValidationErrors.js';
-import { body } from 'express-validator';
+const handleValidationErrors = require('./handleValidationErrors.js');
+const { body } = require('express-validator');
 
-export const validateUser = [
+const validateUser = [
     body('email')
     .exists()
     .withMessage('email is required')
@@ -18,4 +18,8 @@ export const validateUser = [
     .withMessage('password must be at least 6 characters long'),
 
     handleValidationErrors,
-]
+];
+
+module.exports = {
+    validateUser
+};

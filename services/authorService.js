@@ -1,18 +1,18 @@
-import {
+const {
   findAllAuthors,
   findAuthorById,
   createAuthorRecord,
   updateAuthorRecord,
   deleteAuthorById,
-} from '../repositories/authorRepo.js';
+} = require('../repositories/authorRepo.js');
 
 // GET /authors
-export async function listAuthors() {
+async function listAuthors() {
   return findAllAuthors();
 }
 
 // POST /authors
-export async function createAuthorService(body) {
+async function createAuthorService(body) {
   const { name } = body;
   if (!name) {
     const err = new Error('Field "name" is required');
@@ -23,7 +23,7 @@ export async function createAuthorService(body) {
 }
 
 // PUT /authors/:id
-export async function updateAuthorService(idParam, body) {
+async function updateAuthorService(idParam, body) {
   const id = Number(idParam);
   if (Number.isNaN(id)) throw new Error('Invalid author ID');
 
@@ -37,7 +37,7 @@ export async function updateAuthorService(idParam, body) {
 }
 
 // DELETE /authors/:id
-export async function removeAuthorService(idParam) {
+async function removeAuthorService(idParam) {
   const id = Number(idParam);
   if (Number.isNaN(id)) throw new Error('Invalid author ID');
 
@@ -46,3 +46,10 @@ export async function removeAuthorService(idParam) {
 
   await deleteAuthorById(id);
 }
+
+module.exports = {
+  listAuthors,
+  createAuthorService,
+  updateAuthorService,
+  removeAuthorService
+};

@@ -1,12 +1,12 @@
-import {
+const {
   listBooks,
   createBookService,
   updateBookService,
   removeBookService,
-} from '../services/bookService.js';
+} = require('../services/bookService.js');
 
 // GET /books
-export async function getBooks(req, res, next) {
+async function getBooks(req, res, next) {
   try {
     const books = await listBooks();
     res.json(books);
@@ -16,7 +16,7 @@ export async function getBooks(req, res, next) {
 }
 
 // POST /books
-export async function postBook(req, res, next) {
+async function postBook(req, res, next) {
   try {
     const book = await createBookService(req.body);
     res.status(201).json(book);
@@ -26,7 +26,7 @@ export async function postBook(req, res, next) {
 }
 
 // PUT /books/:id
-export async function putBook(req, res, next) {
+async function putBook(req, res, next) {
   try {
     const updated = await updateBookService(req.params.id, req.body);
     res.json(updated);
@@ -36,7 +36,7 @@ export async function putBook(req, res, next) {
 }
 
 // DELETE /books/:id
-export async function deleteBook(req, res, next) {
+async function deleteBook(req, res, next) {
   try {
     await removeBookService(req.params.id);
     res.status(204).send();
@@ -44,3 +44,10 @@ export async function deleteBook(req, res, next) {
     next(err);
   }
 }
+
+module.exports = {
+  getBooks,
+  postBook,
+  putBook,
+  deleteBook
+};

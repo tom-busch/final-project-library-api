@@ -1,7 +1,7 @@
-import prisma from '../config/db.js';
+const prisma = require('../config/db.js');
 
 // GET /books
-export async function findAllBooks() {
+async function findAllBooks() {
   return prisma.book.findMany({
     select: {
       id: true,
@@ -13,7 +13,7 @@ export async function findAllBooks() {
 }
 
 // Helper
-export async function findBookById(id) {
+async function findBookById(id) {
   return prisma.book.findUnique({
     where: { id },
     select: {
@@ -25,7 +25,7 @@ export async function findBookById(id) {
   });
 }
 
-export async function createBookRecord({ name, authorId, genreId }) {
+async function createBookRecord({ name, authorId, genreId }) {
   return prisma.book.create({
     data: {
       title: name,
@@ -41,7 +41,7 @@ export async function createBookRecord({ name, authorId, genreId }) {
   });
 }
 
-export async function updateBookRecord(id, { name, authorId, genreId }) {
+async function updateBookRecord(id, { name, authorId, genreId }) {
   const data = {};
   if (typeof name === 'string') data.title = name;
   if (typeof authorId === 'number') data.authorId = authorId;
@@ -60,8 +60,16 @@ export async function updateBookRecord(id, { name, authorId, genreId }) {
 }
 
 // DELETE /books/:id
-export async function deleteBookById(id) {
+async function deleteBookById(id) {
   await prisma.book.delete({
     where: { id },
   });
 }
+
+module.exports = {
+  findAllBooks,
+  findBookById,
+  createBookRecord,
+  updateBookRecord,
+  deleteBookById
+};

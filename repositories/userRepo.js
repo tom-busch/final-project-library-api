@@ -1,7 +1,7 @@
-import prisma from '../config/db.js';
-import bcrypt from 'bcrypt';
+const prisma = require('../config/db.js');
+const bcrypt = require('bcrypt');
 
-export async function createUser(data) {
+async function createUser(data) {
     return await prisma.user.create({
         data: {
             email: data.email,
@@ -11,11 +11,11 @@ export async function createUser(data) {
     });
 }
 
-export async function getUserByEmail(email) {
+async function getUserByEmail(email) {
     return await prisma.user.findUnique({where: { email }});
 }
 
-export async function findAllUsers() {
+async function findAllUsers() {
     return await prisma.user.findMany({
         select: {
             id: true,
@@ -28,7 +28,7 @@ export async function findAllUsers() {
     });
 }
 
-export async function createUserFromName(name) {
+async function createUserFromName(name) {
     const email = `placeholder@example.com`;
     const passwordHash = await bcrypt.hash('placeholder', 10);
     return await prisma.user.create({
@@ -41,19 +41,19 @@ export async function createUserFromName(name) {
     });
 }
 
-export async function deleteUserById(userId) {
+async function deleteUserById(userId) {
     return await prisma.user.delete({
         where: { id: userId },
     });
 }
 
-export async function findUserById(userId) {
+async function findUserById(userId) {
     return await prisma.user.findUnique({
         where: { id: userId },
     });
 }
 
-export async function getActiveLoansForUser(userId) {
+async function getActiveLoansForUser(userId) {
     const userWithLoans = await prisma.user.findUnique({
         where: { id: userId },
         include: {
@@ -66,7 +66,7 @@ export async function getActiveLoansForUser(userId) {
     return userWithLoans.loans.map((loan) => loan.bookId);
 }
 
-export async function replaceUserLoans(userId, bookIds) {
+async function replaceUserLoans(userId, bookIds) {
     const id = Number(userId);
 
     await prisma.loan.deleteMany({ where: { userId: id } });
@@ -89,9 +89,21 @@ export async function replaceUserLoans(userId, bookIds) {
     return createdLoans.map(loan => loan.bookId);
 }
 
-export async function updateUserRoleById(userId, role) {
+async function updateUserRoleById(userId, role) {
     return await prisma.user.update({
         where: { id: userId },
         data: { role },
     });
 }
+
+module.exports = {
+    createUser,
+    getUserByEmail,
+    findAllUsers,
+    createUserFromName,
+    deleteUserById,
+    findUserById,
+    getActiveLoansForUser,
+    replaceUserLoans,
+    updateUserRoleById
+};

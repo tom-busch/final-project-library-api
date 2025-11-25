@@ -14,7 +14,7 @@ export async function signUpHandler(req, res) {
 export async function logInHandler(req, res) {
     const {email, password } = req.body;
 
-    await logIn(email, password);
+    const accessToken = await logIn(email, password);
     
-    res.status(200).json({ message: 'Login successful' });
+    res.status(200).json({ accessToken });
 }

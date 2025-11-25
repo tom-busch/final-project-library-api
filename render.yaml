@@ -3,8 +3,8 @@ services:
     name: shelfserve-api
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build && mkdir -p src && cp package.json src/ && cd src && npm install --production
-    startCommand: npm start
+    buildCommand: npm install && npm run build
+    startCommand: bash start.sh
     envVars:
       - key: NODE_ENV
         value: production

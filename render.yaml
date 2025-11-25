@@ -2,9 +2,10 @@ services:
   - type: web
     name: shelfserve-api
     runtime: node
+    rootDir: src
     plan: free
-    buildCommand: npm ci && npm run build
-    startCommand: node src/server.js
+    buildCommand: npm install && npm run build
+    startCommand: node server.js
     envVars:
       - key: NODE_ENV
         value: production

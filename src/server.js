@@ -20,12 +20,20 @@ app.use(express.json());
 const specs = YAML.load('./public/bundled.yaml');
 app.use('/shelfserve-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 // Routes
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/books', bookRoutes);
 app.use('/authors', authorRoutes);
 app.use('/genres', genreRoutes);
+
+app.get('/', (req, res) => {
+  res.send('ShelfServe API is running 🚀');
+});
 
 // 404 handler
 app.use((req, res, next) => {

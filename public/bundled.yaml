@@ -1,0 +1,424 @@
+openapi: 3.1.0
+info:
+  title: ShelfServe API
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+tags:
+  - name: users
+    description: User-related endpoints
+paths:
+  /users:
+    get:
+      summary: List all users
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Create a new user
+      tags:
+        - users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /users/{id}:
+    get:
+      summary: Gets a single user by their id
+      tags:
+        - users
+      parameters:
+        - name: id
+          in: param
+          required: true
+          description: Retrieve one user from id
+          schema:
+            type: integer
+            example: 2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Deletes a single user by their id
+      tags:
+        - users
+      parameters:
+        name: id
+        in: param
+        required: true
+        description: Retrieve one user from id
+        schema:
+          type: integer
+          example: 2
+      responses:
+        '204':
+          description: No content
+  /users/{id}/role:
+    patch:
+      summary: Update a users' role by their id
+      tags:
+        - users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A user's id
+          schema:
+            type: integer
+            example: 1
+        - name: role
+          in: path
+          required: true
+          description: Change the user's role
+          schema:
+            type: string
+            example: ADMIN
+      responses:
+        '201':
+          description: Content changed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /books:
+    get:
+      summary: List all books
+      tags:
+        - books
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+    post:
+      summary: Create a new book
+      tags:
+        - books
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '201':
+          description: Book created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /books/{id}:
+    get:
+      summary: Gets a single book by its id
+      tags:
+        - books
+      parameters:
+        - name: id
+          in: param
+          required: true
+          description: Retrieve one book from id
+          schema:
+            type: integer
+            example: 2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Deletes a single book by its id
+      tags:
+        - books
+      parameters:
+        name: id
+        in: param
+        required: true
+        description: Retrieve one book from id
+        schema:
+          type: integer
+          example: 2
+      responses:
+        '204':
+          description: No content
+  /authors:
+    get:
+      summary: List all authors
+      tags:
+        - authors
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+    post:
+      summary: Create a new author
+      tags:
+        - authors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+      responses:
+        '201':
+          description: Author created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /authors{id}:
+    get:
+      summary: Gets a single author by their id
+      tags:
+        - authors
+      parameters:
+        - name: id
+          in: param
+          required: true
+          description: Retrieve one author from id
+          schema:
+            type: integer
+            example: 2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Deletes a single author by their id
+      tags:
+        - authors
+      parameters:
+        name: id
+        in: param
+        required: true
+        description: Retrieve one author from id
+        schema:
+          type: integer
+          example: 2
+      responses:
+        '204':
+          description: No content
+  /genres:
+    get:
+      summary: List all genres
+      tags:
+        - genres
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Genre'
+    post:
+      summary: Create a new genre
+      tags:
+        - genre
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Genre'
+      responses:
+        '201':
+          description: Genre created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Genre'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /genres/{id}:
+    get:
+      summary: Gets a single genre by its id
+      tags:
+        - genres
+      parameters:
+        - name: id
+          in: param
+          required: true
+          description: Retrieve one genre from id
+          schema:
+            type: integer
+            example: 2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Genre'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Deletes a single genre by its id
+      tags:
+        - genres
+      parameters:
+        name: id
+        in: param
+        required: true
+        description: Retrieve one genre from id
+        schema:
+          type: integer
+          example: 2
+      responses:
+        '204':
+          description: No content
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Chris Hemsworth
+        role:
+          type: string
+          example: USER
+    ValidationError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Validation failed
+        details:
+          type: array
+          items:
+            type: string
+    NotFoundError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Not Found Error
+        details:
+          type: array
+          items:
+            type: string
+    Book:
+      type: object
+      properites:
+        id:
+          readOnly: true
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: To Kill A Mockingbird
+        authorId:
+          type: integer
+          example: 1
+        genreId:
+          type: integer
+          example: 1
+    Author:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Harper Lee
+    Genre:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Fiction
+  responses:
+    BadRequest:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+    NotFound:
+      description: Not Found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'

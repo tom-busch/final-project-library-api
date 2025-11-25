@@ -1,0 +1,40 @@
+get:
+  summary: Gets a single author by their id
+  tags:
+    - authors
+  parameters:
+    - name: id
+      in: param
+      required: true
+      description: Retrieve one author from id
+      schema:
+        type: integer
+        example: 2
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Author.yaml
+    '400':
+      $ref: '../components/responses/BadRequest.yaml'
+    '404':
+      $ref: '../components/responses/NotFound.yaml'
+delete:
+  summary: Deletes a single author by their id
+  tags:
+    - authors
+  parameters:
+    name: id
+    in: param
+    required: true
+    description: Retrieve one author from id
+    schema:
+      type: integer
+      example: 2
+  responses:
+    '204':
+      description: No content

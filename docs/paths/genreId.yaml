@@ -1,0 +1,40 @@
+get:
+  summary: Gets a single genre by its id
+  tags:
+    - genres
+  parameters:
+    - name: id
+      in: param
+      required: true
+      description: Retrieve one genre from id
+      schema:
+        type: integer
+        example: 2
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Genre.yaml
+    '400':
+      $ref: '../components/responses/BadRequest.yaml'
+    '404':
+      $ref: '../components/responses/NotFound.yaml'
+delete:
+  summary: Deletes a single genre by its id
+  tags:
+    - genres
+  parameters:
+    name: id
+    in: param
+    required: true
+    description: Retrieve one genre from id
+    schema:
+      type: integer
+      example: 2
+  responses:
+    '204':
+      description: No content

@@ -1,0 +1,15 @@
+type: object
+properites:
+  id:
+    readOnly: true
+    type: integer
+    example: 1
+  name:
+    type: string
+    example: To Kill A Mockingbird
+  authorId:
+    type: integer
+    example: 1
+  genreId:
+    type: integer
+    example: 1

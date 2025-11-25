@@ -11,26 +11,33 @@
     "start": "node src/server.js",
     "migrate:dev": "npx prisma migrate dev",
     "migrate:deploy": "npx prisma migrate deploy",
-    "seed": "node prisma/seed.js"
+    "seed": "node prisma/seed.js",
+    "build": "tsc"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
     "@redocly/cli": "^2.11.1",
+    "@types/node": "^24.10.1",
+    "@types/pg": "^8.15.6",
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^10.1.5",
     "globals": "^16.2.0",
     "prettier": "^3.6.1",
-    "prisma": "^6.19.0",
-    "supertest": "^7.1.4"
+    "prisma": "^6.16.2",
+    "supertest": "^7.1.4",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@prisma/client": "^6.19.0",
+    "@prisma/adapter-pg": "^7.0.0",
+    "@prisma/client": "^6.16.2",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "pg": "^8.16.3",
     "swagger-ui-express": "^5.0.1",
     "yamljs": "^0.3.0"
   }

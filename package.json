@@ -5,10 +5,10 @@
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "dev": "node --env-file=.env --watch src/server.js",
-    "start": "node index.js",
+    "start": "node src/server.js",
     "migrate:dev": "npx prisma migrate dev",
     "migrate:deploy": "npx prisma migrate deploy",
     "seed": "node prisma/seed.js",

@@ -1,10 +1,10 @@
 services:
   - type: web
     name: final-project-api
-    env: node
+    runtime: node
     plan: free
     buildCommand: npm install && npx prisma generate
-    startCommand: cd src && node server.js
+    startCommand: node server.js
     envVars:
       - key: NODE_ENV
         value: production

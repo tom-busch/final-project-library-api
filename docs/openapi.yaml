@@ -5,6 +5,8 @@ info:
 servers:
   - url: http://localhost:3000
     description: Local development server
+  - url: https://shelfserve-lib-api.onrender.com/shelfserve-docs
+    description: Production development server
 tags:
   - name: users
     description: User-related endpoints

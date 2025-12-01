@@ -11,7 +11,7 @@ import { authorizeRoles } from '../middleware/authorizeRoles.js';
 
 const router = Router();
 
-router.get('/', authenticate, authorizeRoles('ADMIN'), getUsers);
+router.get('/', authenticate, getUsers);
 router.post('/', authenticate, authorizeRoles('ADMIN'), postUser);
 router.put('/:id', authenticate, authorizeRoles('ADMIN'), putUser);
 router.patch('/:id/role', authenticate, authorizeRoles('ADMIN'), patchUserRole);

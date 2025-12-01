@@ -9,7 +9,7 @@ import {
 } from '../repositories/userRepo.js';
 
 export async function listUsers() {
-  return findAllUsers();
+  return await findAllUsers();
 }
 
 export async function createUserService(name) {
@@ -18,7 +18,7 @@ export async function createUserService(name) {
     err.status = 400;
     throw err;
   }
-  return createUserFromName(name);
+  return await createUserFromName(name);
 }
 
 export async function setUserBooksCheckedOut(userId, booksCheckedOut) {

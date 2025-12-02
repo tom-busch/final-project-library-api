@@ -208,7 +208,7 @@ paths:
     post:
       summary: Create a new genre
       tags:
-        - genre
+        - genres
       requestBody:
         required: true
         content:

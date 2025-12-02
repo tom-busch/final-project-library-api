@@ -45,31 +45,6 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
   /users/{id}:
-    get:
-      summary: Gets a single user by their id
-      tags:
-        - users
-      parameters:
-        - name: id
-          in: param
-          required: true
-          description: Retrieve one user from id
-          schema:
-            type: integer
-            example: 2
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
     delete:
       summary: Deletes a single user by their id
       tags:
@@ -152,31 +127,6 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
   /books/{id}:
-    get:
-      summary: Gets a single book by its id
-      tags:
-        - books
-      parameters:
-        - name: id
-          in: param
-          required: true
-          description: Retrieve one book from id
-          schema:
-            type: integer
-            example: 2
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
     delete:
       summary: Deletes a single book by its id
       tags:
@@ -226,31 +176,6 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
   /authors{id}:
-    get:
-      summary: Gets a single author by their id
-      tags:
-        - authors
-      parameters:
-        - name: id
-          in: param
-          required: true
-          description: Retrieve one author from id
-          schema:
-            type: integer
-            example: 2
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
     delete:
       summary: Deletes a single author by their id
       tags:
@@ -300,31 +225,6 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
   /genres/{id}:
-    get:
-      summary: Gets a single genre by its id
-      tags:
-        - genres
-      parameters:
-        - name: id
-          in: param
-          required: true
-          description: Retrieve one genre from id
-          schema:
-            type: integer
-            example: 2
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Genre'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
     delete:
       summary: Deletes a single genre by its id
       tags:
